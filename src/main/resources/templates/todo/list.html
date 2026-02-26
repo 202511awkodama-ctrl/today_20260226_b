@@ -17,6 +17,15 @@
         <a th:href="@{/todo/new}" class="btn btn-primary">&#26032;&#35215;&#30331;&#37682;</a>
     </div>
 
+    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show flash-alert" role="alert">
+        <span th:text="${successMessage}">ToDo&#12434;&#21066;&#38500;&#12375;&#12414;&#12375;&#12383;</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show flash-alert" role="alert">
+        <span th:text="${errorMessage}">&#21066;&#38500;&#12395;&#22833;&#25943;&#12375;&#12414;&#12375;&#12383;</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <div th:if="${todos == null or #lists.isEmpty(todos)}" class="card shadow-sm border-0">
         <div class="card-body p-5 text-center">
             <h2 class="h5 mb-3 text-secondary">ToDo&#12364;&#12414;&#12384;&#30331;&#37682;&#12373;&#12428;&#12390;&#12356;&#12414;&#12379;&#12435;</h2>
@@ -61,5 +70,16 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+<script>
+    setTimeout(function () {
+        document.querySelectorAll('.flash-alert').forEach(function (el) {
+            if (window.bootstrap && bootstrap.Alert) {
+                bootstrap.Alert.getOrCreateInstance(el).close();
+            } else {
+                el.remove();
+            }
+        });
+    }, 3000);
+</script>
 </body>
 </html>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.Todo;
 import com.example.demo.service.TodoService;
@@ -48,8 +49,13 @@ public class TodoController {
     }
 
     @PostMapping("/{id}/delete")
-    public String delete(@PathVariable("id") Long id) {
-        todoService.deleteById(id);
+    public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        boolean deleted = todoService.deleteById(id);
+        if (deleted) {
+            redirectAttributes.addFlashAttribute("successMessage", "\u0054\u006f\u0044\u006f\u3092\u524a\u9664\u3057\u307e\u3057\u305f");
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "\u524a\u9664\u306b\u5931\u6557\u3057\u307e\u3057\u305f");
+        }
         return "redirect:/todo";
     }
 }
