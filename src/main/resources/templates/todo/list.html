@@ -45,7 +45,8 @@
                         <span th:unless="${todo.completed}" class="badge text-bg-secondary">&#26410;&#23436;&#20102;</span>
                     </td>
                     <td>
-                        <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="d-inline">
+                        <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="d-inline"
+                              onsubmit="return confirm(String.fromCharCode(26412,24403,12395,21066,38500,12375,12414,12377,12363,65311))">
                             <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
                         </form>
                     </td>
