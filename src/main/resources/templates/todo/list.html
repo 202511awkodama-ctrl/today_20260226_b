@@ -27,12 +27,13 @@
 
     <div th:unless="${todos == null or #lists.isEmpty(todos)}" class="card shadow-sm">
         <div class="card-body p-0">
-            <table class="table table-striped table-hover mb-0">
+            <table class="table table-striped table-hover mb-0 align-middle">
                 <thead class="table-dark">
                 <tr>
                     <th scope="col" style="width: 80px;">ID</th>
                     <th scope="col">&#12479;&#12452;&#12488;&#12523;</th>
                     <th scope="col" style="width: 160px;">&#23436;&#20102;&#29366;&#24907;</th>
+                    <th scope="col" style="width: 120px;">&#25805;&#20316;</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,11 @@
                     <td>
                         <span th:if="${todo.completed}" class="badge text-bg-success">&#23436;&#20102;</span>
                         <span th:unless="${todo.completed}" class="badge text-bg-secondary">&#26410;&#23436;&#20102;</span>
+                    </td>
+                    <td>
+                        <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>
