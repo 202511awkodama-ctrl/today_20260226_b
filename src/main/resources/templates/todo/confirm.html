@@ -16,17 +16,18 @@
         <div class="card-body p-4">
             <h1 class="h4 mb-4">&#30331;&#37682;&#20869;&#23481;&#12398;&#30906;&#35469;</h1>
 
-            <div class="card border-secondary-subtle mb-4">
-                <div class="card-header bg-body-tertiary">Title</div>
-                <div class="card-body">
-                    <p class="card-text mb-0" th:text="${title}">Sample Task</p>
+            <form th:action="@{/todo/complete}" method="post">
+                <div class="mb-3">
+                    <label for="titleDisplay" class="form-label">Title</label>
+                    <input id="titleDisplay" type="text" class="form-control" th:value="${title}" readonly>
+                    <input type="hidden" name="title" th:value="${title}">
                 </div>
-            </div>
 
-            <div class="d-flex gap-2">
-                <a th:href="@{/todo/complete}" class="btn btn-success">&#30331;&#37682;</a>
-                <a th:href="@{/todo/new}" class="btn btn-outline-secondary">&#25147;&#12427;</a>
-            </div>
+                <div class="d-flex gap-2">
+                    <a href="javascript:history.back()" class="btn btn-outline-secondary">&#25147;&#12427;</a>
+                    <button type="submit" class="btn btn-success">&#30331;&#37682;</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
