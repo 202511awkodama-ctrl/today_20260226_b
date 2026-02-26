@@ -17,7 +17,15 @@
         <a th:href="@{/todo/new}" class="btn btn-primary">&#26032;&#35215;&#30331;&#37682;</a>
     </div>
 
-    <div class="card shadow-sm">
+    <div th:if="${todos == null or #lists.isEmpty(todos)}" class="card shadow-sm border-0">
+        <div class="card-body p-5 text-center">
+            <h2 class="h5 mb-3 text-secondary">ToDo&#12364;&#12414;&#12384;&#30331;&#37682;&#12373;&#12428;&#12390;&#12356;&#12414;&#12379;&#12435;</h2>
+            <p class="text-muted mb-4">&#26368;&#21021;&#12398;ToDo&#12434;&#26032;&#35215;&#20316;&#25104;&#12375;&#12390;&#12415;&#12414;&#12375;&#12423;&#12358;&#12290;</p>
+            <a th:href="@{/todo/new}" class="btn btn-success btn-lg px-4">&#26032;&#35215;&#20316;&#25104;</a>
+        </div>
+    </div>
+
+    <div th:unless="${todos == null or #lists.isEmpty(todos)}" class="card shadow-sm">
         <div class="card-body p-0">
             <table class="table table-striped table-hover mb-0">
                 <thead class="table-dark">
@@ -32,8 +40,8 @@
                     <td th:text="${todo.id}">1</td>
                     <td th:text="${todo.title}">Sample task</td>
                     <td>
-                        <span th:if="${todo.completed}">&#23436;&#20102;</span>
-                        <span th:unless="${todo.completed}">&#26410;&#23436;&#20102;</span>
+                        <span th:if="${todo.completed}" class="badge text-bg-success">&#23436;&#20102;</span>
+                        <span th:unless="${todo.completed}" class="badge text-bg-secondary">&#26410;&#23436;&#20102;</span>
                     </td>
                 </tr>
                 </tbody>
