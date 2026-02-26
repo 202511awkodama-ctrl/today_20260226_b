@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,15 +23,18 @@
                 <thead class="table-dark">
                 <tr>
                     <th scope="col" style="width: 80px;">ID</th>
-                    <th scope="col">Title</th>
-                    <th scope="col" style="width: 160px;">Status</th>
+                    <th scope="col">&#12479;&#12452;&#12488;&#12523;</th>
+                    <th scope="col" style="width: 160px;">&#23436;&#20102;&#29366;&#24907;</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="todo : ${todoList}">
+                <tr th:each="todo : ${todos}">
                     <td th:text="${todo.id}">1</td>
                     <td th:text="${todo.title}">Sample task</td>
-                    <td th:text="${todo.status}">OPEN</td>
+                    <td>
+                        <span th:if="${todo.completed}">&#23436;&#20102;</span>
+                        <span th:unless="${todo.completed}">&#26410;&#23436;&#20102;</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>

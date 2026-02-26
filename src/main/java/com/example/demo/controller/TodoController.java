@@ -24,13 +24,8 @@ public class TodoController {
 
     @GetMapping
     public String list(Model model) {
-        List<TodoItem> todoList = todoService.findAll().stream()
-                .map(todo -> new TodoItem(
-                        todo.getId(),
-                        todo.getTitle(),
-                        Boolean.TRUE.equals(todo.getCompleted()) ? "DONE" : "OPEN"))
-                .toList();
-        model.addAttribute("todoList", todoList);
+        List<Todo> todos = todoService.findAll();
+        model.addAttribute("todos", todos);
         return "todo/list";
     }
 
@@ -49,8 +44,5 @@ public class TodoController {
     public String complete(@RequestParam("title") String title) {
         todoService.createTodo(title);
         return "redirect:/todo";
-    }
-
-    public record TodoItem(Long id, String title, String status) {
     }
 }
