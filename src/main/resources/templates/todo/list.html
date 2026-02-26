@@ -42,19 +42,24 @@
                     <th scope="col" style="width: 80px;">ID</th>
                     <th scope="col">&#12479;&#12452;&#12488;&#12523;</th>
                     <th scope="col" style="width: 160px;">&#23436;&#20102;&#29366;&#24907;</th>
-                    <th scope="col" style="width: 180px;">&#25805;&#20316;</th>
+                    <th scope="col" style="width: 270px;">&#25805;&#20316;</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="todo : ${todos}">
                     <td th:text="${todo.id}">1</td>
-                    <td th:text="${todo.title}">Sample task</td>
+                    <td>
+                        <span th:text="${todo.title}" th:style="${todo.completed} ? 'text-decoration: line-through;' : ''">Sample task</span>
+                    </td>
                     <td>
                         <span th:if="${todo.completed}" class="badge text-bg-success">&#23436;&#20102;</span>
                         <span th:unless="${todo.completed}" class="badge text-bg-secondary">&#26410;&#23436;&#20102;</span>
                     </td>
                     <td>
-                        <div class="d-flex gap-1">
+                        <div class="d-flex gap-1 flex-wrap">
+                            <form th:action="@{/todo/{id}/toggle(id=${todo.id})}" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-outline-success btn-sm" th:text="${todo.completed} ? '&#26410;&#23436;&#20102;&#12395;&#25147;&#12377;' : '&#23436;&#20102;&#12395;&#12377;&#12427;'">&#23436;&#20102;&#12395;&#12377;&#12427;</button>
+                            </form>
                             <a th:href="@{/todo/{id}/edit(id=${todo.id})}" class="btn btn-outline-primary btn-sm">&#32232;&#38598;</a>
                             <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="d-inline"
                                   onsubmit="return confirm(String.fromCharCode(26412,24403,12395,21066,38500,12375,12414,12377,12363,65311))">
