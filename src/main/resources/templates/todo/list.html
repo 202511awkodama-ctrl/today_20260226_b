@@ -42,7 +42,7 @@
                     <th scope="col" style="width: 80px;">ID</th>
                     <th scope="col">&#12479;&#12452;&#12488;&#12523;</th>
                     <th scope="col" style="width: 160px;">&#23436;&#20102;&#29366;&#24907;</th>
-                    <th scope="col" style="width: 120px;">&#25805;&#20316;</th>
+                    <th scope="col" style="width: 180px;">&#25805;&#20316;</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -54,10 +54,13 @@
                         <span th:unless="${todo.completed}" class="badge text-bg-secondary">&#26410;&#23436;&#20102;</span>
                     </td>
                     <td>
-                        <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="d-inline"
-                              onsubmit="return confirm(String.fromCharCode(26412,24403,12395,21066,38500,12375,12414,12377,12363,65311))">
-                            <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
-                        </form>
+                        <div class="d-flex gap-1">
+                            <a th:href="@{/todo/{id}/edit(id=${todo.id})}" class="btn btn-outline-primary btn-sm">&#32232;&#38598;</a>
+                            <form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post" class="d-inline"
+                                  onsubmit="return confirm(String.fromCharCode(26412,24403,12395,21066,38500,12375,12414,12377,12363,65311))">
+                                <button type="submit" class="btn btn-danger btn-sm">&#21066;&#38500;</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
